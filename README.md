@@ -1,6 +1,6 @@
 # user_app
 
-A new Flutter project.
+This Project displays a list of random users from a dummy API. Also shows the individual details of the user in a seperate User Profile route.
 
 ## Getting Started
 
