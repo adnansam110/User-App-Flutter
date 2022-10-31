@@ -12,7 +12,9 @@ class _UserProfileState extends State<UserProfile> {
   var user;
   @override
   Widget build(BuildContext context) {
+    // This expression gets the user data from the route
     user = ModalRoute.of(context)!.settings.arguments;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
