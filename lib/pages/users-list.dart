@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import "dart:convert";
 import 'package:user_app/widgets/loading-widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:user_app/providers/users_provider.dart';
 
 class UsersList extends StatefulWidget {
   const UsersList({super.key});
@@ -11,15 +13,11 @@ class UsersList extends StatefulWidget {
 }
 
 class _UsersListState extends State<UsersList> {
-  List users = [];
-
   void getUsersData() async {
-    Uri url = Uri.parse("https://jsonplaceholder.typicode.com/users");
+    Uri url = Uri.parse("https://randomuser.me/api/?results=10");
     Response response = await get(url);
-    List data = jsonDecode(response.body);
-    setState(() {
-      users = data;
-    });
+    var data = jsonDecode(response.body);
+    context.read<Users>().setUsers(data["results"]);
   }
 
   @override
@@ -30,6 +28,8 @@ class _UsersListState extends State<UsersList> {
 
   @override
   Widget build(BuildContext context) {
+    List users = context.watch<Users>().users;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -54,10 +54,11 @@ class _UsersListState extends State<UsersList> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            const CircleAvatar(
+                            CircleAvatar(
                               backgroundImage:
-                                  AssetImage('lib/assets/avatar.png'),
+                                  NetworkImage(user["picture"]["thumbnail"]),
                               radius: 30,
+                              backgroundColor: Colors.grey,
                             ),
                             const SizedBox(width: 10.0),
                             Column(
@@ -65,12 +66,12 @@ class _UsersListState extends State<UsersList> {
                               children: [
                                 const SizedBox(height: 10.0),
                                 Text(
-                                  user["name"].toString().length > 40
-                                      ? user["name"]
+                                  user["name"]["first"].toString().length > 40
+                                      ? user["name"]["first"]
                                               .toString()
                                               .substring(0, 40) +
                                           '...'
-                                      : user["name"].toString(),
+                                      : user["name"]["first"].toString(),
                                   style: TextStyle(
                                     color: Colors.grey[600],
                                     fontWeight: FontWeight.bold,

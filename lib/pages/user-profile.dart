@@ -31,14 +31,14 @@ class _UserProfileState extends State<UserProfile> {
             Center(
               child: Column(
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     backgroundColor: Colors.grey,
                     radius: 50.0,
-                    backgroundImage: AssetImage('lib/assets/avatar.png'),
+                    backgroundImage: NetworkImage(user["picture"]["thumbnail"]),
                   ),
                   const SizedBox(height: 10.0),
                   Text(
-                    user["name"],
+                    user["name"]["first"],
                     style: TextStyle(
                       color: Colors.grey[800],
                       fontWeight: FontWeight.bold,
@@ -58,74 +58,6 @@ class _UserProfileState extends State<UserProfile> {
                   ),
                 ],
               ),
-            ),
-            const SizedBox(height: 30.0),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "Company Details:",
-                  style: TextStyle(
-                    color: Colors.grey[900],
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Montserrat",
-                    fontSize: 15.0,
-                  ),
-                ),
-                const SizedBox(height: 7.0),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          "Name: ",
-                          style: TextStyle(
-                            color: Colors.grey[700],
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Montserrat",
-                            fontSize: 12.0,
-                          ),
-                        ),
-                        Text(
-                          "${user["company"]["name"]}",
-                          style: TextStyle(
-                            color: Colors.grey[500],
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Montserrat",
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 5.0),
-                    Row(
-                      children: [
-                        Text(
-                          "Description: ",
-                          style: TextStyle(
-                            color: Colors.grey[700],
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Montserrat",
-                            fontSize: 12.0,
-                          ),
-                        ),
-                        Text(
-                          "${user["company"]["catchPhrase"]}",
-                          style: TextStyle(
-                            color: Colors.grey[500],
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Montserrat",
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
             ),
             const SizedBox(height: 7.0),
             Column(
@@ -158,7 +90,7 @@ class _UserProfileState extends State<UserProfile> {
                           ),
                         ),
                         Text(
-                          "${user["address"]["street"]}",
+                          "${user["location"]["name"]}",
                           style: TextStyle(
                             color: Colors.grey[500],
                             fontWeight: FontWeight.bold,
@@ -181,7 +113,7 @@ class _UserProfileState extends State<UserProfile> {
                           ),
                         ),
                         Text(
-                          "${user["address"]["city"]}",
+                          "${user["location"]["city"]}",
                           style: TextStyle(
                             color: Colors.grey[500],
                             fontWeight: FontWeight.bold,
@@ -204,7 +136,7 @@ class _UserProfileState extends State<UserProfile> {
                           ),
                         ),
                         Text(
-                          "${user["address"]["zipcode"]}",
+                          "${user["location"]["postcode"]}",
                           style: TextStyle(
                             color: Colors.grey[500],
                             fontWeight: FontWeight.bold,
