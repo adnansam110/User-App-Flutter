@@ -34,8 +34,8 @@ class _UsersListState extends State<UsersList> {
           style: TextStyle(color: Colors.grey[200]),
         ),
       ),
-      body: users?.length == 0
-          ? Loader()
+      body: users.isEmpty
+          ? const Loader()
           : Padding(
               padding: const EdgeInsets.all(12.0),
               child: Container(
@@ -62,10 +62,7 @@ class _UsersListState extends State<UsersList> {
                                 const SizedBox(height: 10.0),
                                 Text(
                                   user["name"]["first"].toString().length > 40
-                                      ? user["name"]["first"]
-                                              .toString()
-                                              .substring(0, 40) +
-                                          '...'
+                                      ? "${user["name"]["first"].toString().substring(0, 40)}..."
                                       : user["name"]["first"].toString(),
                                   style: TextStyle(
                                     color: Colors.grey[600],
