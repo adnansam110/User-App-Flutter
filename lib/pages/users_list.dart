@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import "dart:convert";
 import 'package:user_app/widgets/loading-widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:user_app/providers/users_provider.dart';
@@ -14,10 +12,7 @@ class UsersList extends StatefulWidget {
 
 class _UsersListState extends State<UsersList> {
   void getUsersData() async {
-    Uri url = Uri.parse("https://randomuser.me/api/?results=10");
-    Response response = await get(url);
-    var data = jsonDecode(response.body);
-    context.read<Users>().setUsers(data["results"]);
+    context.read<Users>().getUsers();
   }
 
   @override
