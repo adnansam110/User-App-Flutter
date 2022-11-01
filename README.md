@@ -2,6 +2,12 @@
 
 This Project displays a list of random users from a dummy API. Also shows the individual details of the user in a seperate User Profile route.
 
+## Users List
+![image](https://user-images.githubusercontent.com/51002433/199208275-b8c4e3ae-4eab-4e53-ad9a-0104b780bcfb.png)
+
+## User Profile
+![image](https://user-images.githubusercontent.com/51002433/199208324-d6791e1d-7e1c-4203-bde0-0ff9be074c65.png)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
